@@ -1,10 +1,10 @@
-package com.appzomi.NFTThuamvumBackend.auth;
+package com.appzomi.NFTThuamvumBackend.Dto;
 
-public class LoginDTO {
+public class LoginDto {
     private String username;
     private String password;
 
-    public LoginDTO(String username, String password) {
+    public LoginDto(String username, String password) {
         this.username = username;
         this.password = password;
     }
@@ -27,7 +27,7 @@ public class LoginDTO {
 
     @Override
     public String toString() {
-        return "LoginDTO{" +
+        return "LoginDto{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';

@@ -1,5 +1,8 @@
-package com.appzomi.NFTThuamvumBackend.account;
+package com.appzomi.NFTThuamvumBackend.Controller;
 
+import com.appzomi.NFTThuamvumBackend.Domain.Account;
+import com.appzomi.NFTThuamvumBackend.Dto.AccountDto;
+import com.appzomi.NFTThuamvumBackend.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +36,7 @@ public class AccountController {
     }
 
     @PostMapping(path = "")
-    public Optional<Account> addAccount(@RequestBody AccountDTO acc) {
+    public Optional<Account> addAccount(@RequestBody AccountDto acc) {
         return this.accountService.addAccount(acc);
     }
 }

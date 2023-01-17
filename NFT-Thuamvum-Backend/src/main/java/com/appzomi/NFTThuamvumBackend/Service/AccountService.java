@@ -1,9 +1,11 @@
-package com.appzomi.NFTThuamvumBackend.account;
+package com.appzomi.NFTThuamvumBackend.Service;
 
+import com.appzomi.NFTThuamvumBackend.Domain.Account;
+import com.appzomi.NFTThuamvumBackend.Dto.AccountDto;
+import com.appzomi.NFTThuamvumBackend.Repo.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.parser.Entity;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +26,11 @@ public class AccountService {
         return accountRepository.findById(id);
     }
 
-    public Optional<Account> deleteAccountById(long id) {
+    public Optional<Account> authenticateAccount(String uname, String pass) {
+        return accountRepository.findAccountByUsernameAndPassword(uname, pass);
+    }
+
+    public Optional<Account> deleteAccountById(Long id) {
         try {
             Optional<Account> result = getAccountById(id);
             accountRepository.deleteById(id);
@@ -37,7 +43,7 @@ public class AccountService {
         }
     }
 
-    public Optional<Account> addAccount(AccountDTO acc) {
+    public Optional<Account> addAccount(AccountDto acc) {
         Account saved = new Account(acc.getName(), acc.getUsername(), acc.getEmail(), acc.getPassword());
         return Optional.of(accountRepository.save(saved));
     }

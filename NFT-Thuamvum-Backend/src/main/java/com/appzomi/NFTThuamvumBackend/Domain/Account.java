@@ -1,4 +1,4 @@
-package com.appzomi.NFTThuamvumBackend.account;
+package com.appzomi.NFTThuamvumBackend.Domain;
 
 import jakarta.persistence.*;
 

@@ -1,5 +1,7 @@
-package com.appzomi.NFTThuamvumBackend.auth;
+package com.appzomi.NFTThuamvumBackend.Controller;
 
+import com.appzomi.NFTThuamvumBackend.Dto.LoginDto;
+import com.appzomi.NFTThuamvumBackend.Service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +22,7 @@ public class LoginController {
     }
 
     @PostMapping("login")
-    public Optional<String> login(@RequestBody LoginDTO loginForm){
+    public Optional<String> login(@RequestBody LoginDto loginForm){
         return loginService.authenticateUser(loginForm);
     }
 }
