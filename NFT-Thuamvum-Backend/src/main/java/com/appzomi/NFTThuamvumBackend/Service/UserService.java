@@ -1,5 +1,6 @@
 package com.appzomi.NFTThuamvumBackend.Service;
 
+import com.appzomi.NFTThuamvumBackend.Domain.Role;
 import com.appzomi.NFTThuamvumBackend.Domain.User;
 import com.appzomi.NFTThuamvumBackend.Dto.UserDto;
 import com.appzomi.NFTThuamvumBackend.Repo.UserRepository;
@@ -45,6 +46,7 @@ public class UserService {
                 .username(usr.getUsername())
                 .email(usr.getEmail())
                 .password(usr.getPassword())
+                .role(Role.USER)
                 .build();
 
         return Optional.of(userRepository.save(saved));
