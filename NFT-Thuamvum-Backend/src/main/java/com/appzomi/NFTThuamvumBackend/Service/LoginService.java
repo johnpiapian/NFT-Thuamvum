@@ -1,8 +1,8 @@
 package com.appzomi.NFTThuamvumBackend.Service;
 
-import com.appzomi.NFTThuamvumBackend.Domain.Account;
+import com.appzomi.NFTThuamvumBackend.Domain.User;
 import com.appzomi.NFTThuamvumBackend.Dto.LoginDto;
-import com.appzomi.NFTThuamvumBackend.Repo.AccountRepository;
+import com.appzomi.NFTThuamvumBackend.Repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +11,11 @@ import java.util.Optional;
 @Service
 public class LoginService {
 
-    private final AccountRepository accountRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public LoginService(AccountRepository accountRepository) {
-        this.accountRepository = accountRepository;
+    public LoginService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     public Optional<String> authenticateUser(LoginDto loginForm) {
@@ -23,7 +23,7 @@ public class LoginService {
         String username = loginForm.getUsername();
         String password = loginForm.getPassword();
 
-        Optional<Account> result = accountRepository.findAccountByUsernameAndPassword(username, password);
+        Optional<User> result = userRepository.findUserByUsernameAndPassword(username, password);
 
         if(result.isPresent()) {
             return "This should be the token".describeConstable();

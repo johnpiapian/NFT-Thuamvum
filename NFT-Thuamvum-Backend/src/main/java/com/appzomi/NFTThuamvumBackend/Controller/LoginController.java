@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/auth")
+@RequestMapping("api/")
 public class LoginController {
 
     private final LoginService loginService;
@@ -22,7 +22,7 @@ public class LoginController {
         this.loginService = loginService;
     }
 
-    @PostMapping("login")
+    @PostMapping("/auth/login")
     public ResponseEntity<Optional<String>> login(@RequestBody LoginDto loginForm){
         return ResponseEntity.ok().body(loginService.authenticateUser(loginForm));
     }
