@@ -5,6 +5,7 @@ import com.appzomi.NFTThuamvumBackend.Domain.User;
 import com.appzomi.NFTThuamvumBackend.Dto.UserDto;
 import com.appzomi.NFTThuamvumBackend.Repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,10 +14,12 @@ import java.util.Optional;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<User> getUsers() {
@@ -45,7 +48,7 @@ public class UserService {
                 .name(usr.getName())
                 .username(usr.getUsername())
                 .email(usr.getEmail())
-                .password(usr.getPassword())
+                .password(passwordEncoder.encode(usr.getPassword()))
                 .role(Role.USER)
                 .build();
 

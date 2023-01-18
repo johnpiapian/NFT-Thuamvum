@@ -1,7 +1,12 @@
 package com.appzomi.NFTThuamvumBackend.Config;
 
+import com.appzomi.NFTThuamvumBackend.Domain.Role;
+import com.appzomi.NFTThuamvumBackend.Domain.User;
+import com.appzomi.NFTThuamvumBackend.Dto.UserDto;
 import com.appzomi.NFTThuamvumBackend.Repo.UserRepository;
+import com.appzomi.NFTThuamvumBackend.Service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -41,5 +46,28 @@ public class ApplicationConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    CommandLineRunner commandLineRunner(UserService userService) {
+        return args -> {
+            userService.addUser(
+                    UserDto.builder()
+                            .name("Sut")
+                            .username("sut")
+                            .email("sut@me.com")
+                            .password("password")
+                            .build()
+            );
+
+            userService.addUser(
+                    UserDto.builder()
+                            .name("John")
+                            .username("john")
+                            .email("john@me.com")
+                            .password("password")
+                            .build()
+            );
+        };
     }
 }
