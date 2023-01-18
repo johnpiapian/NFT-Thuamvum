@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LoginService {
+public class AuthenticateService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -21,22 +21,22 @@ public class LoginService {
     private final AuthenticationManager authenticationManager;
 
     @Autowired
-    public LoginService(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService, AuthenticationManager authenticationManager) {
+    public AuthenticateService(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService, AuthenticationManager authenticationManager) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.jwtService = jwtService;
         this.authenticationManager = authenticationManager;
     }
 
-    public TokenDto authenticateUser(LoginDto loginForm) {
+    public TokenDto authenticateUser(LoginDto _user) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        loginForm.getUsername(),
-                        loginForm.getPassword()
+                        _user.getUsername(),
+                        _user.getPassword()
                 )
         );
 
-        var user = userRepository.findUserByUsername(loginForm.getUsername()).orElseThrow();
+        var user = userRepository.findUserByUsername(_user.getUsername()).orElseThrow();
         var jwtToken = jwtService.generateToken(user);
 
         return TokenDto.builder().token(jwtToken).build();
