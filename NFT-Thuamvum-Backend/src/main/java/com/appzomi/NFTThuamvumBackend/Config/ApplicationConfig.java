@@ -1,7 +1,5 @@
 package com.appzomi.NFTThuamvumBackend.Config;
 
-import com.appzomi.NFTThuamvumBackend.Domain.Role;
-import com.appzomi.NFTThuamvumBackend.Domain.User;
 import com.appzomi.NFTThuamvumBackend.Dto.UserDto;
 import com.appzomi.NFTThuamvumBackend.Repo.UserRepository;
 import com.appzomi.NFTThuamvumBackend.Service.UserService;

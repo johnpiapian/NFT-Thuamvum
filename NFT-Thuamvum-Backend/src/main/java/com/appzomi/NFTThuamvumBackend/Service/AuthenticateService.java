@@ -1,9 +1,9 @@
 package com.appzomi.NFTThuamvumBackend.Service;
 
-import com.appzomi.NFTThuamvumBackend.Domain.Role;
-import com.appzomi.NFTThuamvumBackend.Domain.User;
-import com.appzomi.NFTThuamvumBackend.Dto.LoginDto;
-import com.appzomi.NFTThuamvumBackend.Dto.TokenDto;
+import com.appzomi.NFTThuamvumBackend.Dao.Role;
+import com.appzomi.NFTThuamvumBackend.Dao.User;
+import com.appzomi.NFTThuamvumBackend.Dto.LoginRequest;
+import com.appzomi.NFTThuamvumBackend.Dto.TokenResponse;
 import com.appzomi.NFTThuamvumBackend.Dto.UserDto;
 import com.appzomi.NFTThuamvumBackend.Repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +11,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class AuthenticateService {
@@ -28,7 +31,7 @@ public class AuthenticateService {
         this.authenticationManager = authenticationManager;
     }
 
-    public TokenDto authenticateUser(LoginDto _user) {
+    public TokenResponse authenticateUser(LoginRequest _user) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         _user.getUsername(),
@@ -37,13 +40,14 @@ public class AuthenticateService {
         );
 
         var user = userRepository.findUserByUsername(_user.getUsername()).orElseThrow();
+
         var jwtToken = jwtService.generateToken(user);
 
-        return TokenDto.builder().token(jwtToken).build();
+        return TokenResponse.builder().token(jwtToken).build();
     }
 
-    public TokenDto register(UserDto usr) {
-        User saved = User.builder()
+    public TokenResponse register(UserDto usr) {
+        User user = User.builder()
                 .name(usr.getName())
                 .username(usr.getUsername())
                 .email(usr.getEmail())
@@ -51,10 +55,20 @@ public class AuthenticateService {
                 .role(Role.USER)
                 .build();
 
-        userRepository.save(saved);
-        var jwtToken = jwtService.generateToken(saved);
+        userRepository.save(user);
 
-        return TokenDto.builder().token(jwtToken).build();
+        var jwtToken = jwtService.generateToken(user);
+
+        return TokenResponse.builder().token(jwtToken).build();
     }
 
+
+    private Map<String, Object> defaultClaims(User usr) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("role", usr.getRole());
+        claims.put("email", usr.getEmail());
+        claims.put("name", usr.getName());
+
+        return claims;
+    }
 }
