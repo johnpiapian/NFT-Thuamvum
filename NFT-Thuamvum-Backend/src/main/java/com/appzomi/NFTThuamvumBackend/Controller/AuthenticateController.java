@@ -1,7 +1,7 @@
 package com.appzomi.NFTThuamvumBackend.Controller;
 
-import com.appzomi.NFTThuamvumBackend.Dto.LoginDto;
-import com.appzomi.NFTThuamvumBackend.Dto.TokenDto;
+import com.appzomi.NFTThuamvumBackend.Dto.LoginRequest;
+import com.appzomi.NFTThuamvumBackend.Dto.TokenResponse;
 import com.appzomi.NFTThuamvumBackend.Dto.UserDto;
 import com.appzomi.NFTThuamvumBackend.Service.AuthenticateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +23,12 @@ public class AuthenticateController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<TokenDto> login(@RequestBody LoginDto loginForm){
+    public ResponseEntity<TokenResponse> login(@RequestBody LoginRequest loginForm){
         return ResponseEntity.ok().body(authenticateService.authenticateUser(loginForm));
     }
 
     @PostMapping("/register")
-    public ResponseEntity<TokenDto> register(@RequestBody UserDto user){
+    public ResponseEntity<TokenResponse> register(@RequestBody UserDto user){
         return ResponseEntity.ok().body(authenticateService.register(user));
     }
 }

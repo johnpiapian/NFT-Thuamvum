@@ -1,4 +1,4 @@
-package com.appzomi.NFTThuamvumBackend.Domain;
+package com.appzomi.NFTThuamvumBackend.Dao;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

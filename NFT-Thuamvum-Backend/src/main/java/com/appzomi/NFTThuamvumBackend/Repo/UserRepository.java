@@ -1,8 +1,7 @@
 package com.appzomi.NFTThuamvumBackend.Repo;
 
-import com.appzomi.NFTThuamvumBackend.Domain.User;
+import com.appzomi.NFTThuamvumBackend.Dao.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;

@@ -1,7 +1,7 @@
 package com.appzomi.NFTThuamvumBackend.Service;
 
-import com.appzomi.NFTThuamvumBackend.Domain.Role;
-import com.appzomi.NFTThuamvumBackend.Domain.User;
+import com.appzomi.NFTThuamvumBackend.Dao.Role;
+import com.appzomi.NFTThuamvumBackend.Dao.User;
 import com.appzomi.NFTThuamvumBackend.Dto.UserDto;
 import com.appzomi.NFTThuamvumBackend.Repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
