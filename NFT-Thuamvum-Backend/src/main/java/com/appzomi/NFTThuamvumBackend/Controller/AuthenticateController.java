@@ -23,8 +23,8 @@ public class AuthenticateController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<TokenResponse> login(@RequestBody LoginRequest loginForm){
-        return ResponseEntity.ok().body(authenticateService.authenticateUser(loginForm));
+    public ResponseEntity<TokenResponse> login(@RequestBody LoginRequest loginRequest){
+        return ResponseEntity.ok().body(authenticateService.authenticateUser(loginRequest));
     }
 
     @PostMapping("/register")

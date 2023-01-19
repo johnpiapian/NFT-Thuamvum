@@ -41,7 +41,7 @@ public class AuthenticateService {
 
         var user = userRepository.findUserByUsername(_user.getUsername()).orElseThrow();
 
-        var jwtToken = jwtService.generateToken(defaultClaims(user), user);
+        var jwtToken = jwtService.generateToken(user);
 
         return TokenResponse.builder().token(jwtToken).build();
     }
@@ -57,7 +57,7 @@ public class AuthenticateService {
 
         userRepository.save(user);
 
-        var jwtToken = jwtService.generateToken(defaultClaims(user), user);
+        var jwtToken = jwtService.generateToken(user);
 
         return TokenResponse.builder().token(jwtToken).build();
     }

@@ -2,9 +2,7 @@ package com.appzomi.NFTThuamvumBackend.Service;
 
 import com.appzomi.NFTThuamvumBackend.Dao.User;
 import com.appzomi.NFTThuamvumBackend.Dto.ProfileResponse;
-import com.appzomi.NFTThuamvumBackend.Dto.UserDto;
 import com.appzomi.NFTThuamvumBackend.Repo.UserRepository;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
