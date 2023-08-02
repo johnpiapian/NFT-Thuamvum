@@ -19,7 +19,7 @@ import java.util.function.Function;
 @Service
 public class JwtService {
 
-    // Make sure to use a different key for production
+    // Note: use a different key for production
     private static final String SECRET_KEY = "5367566B597033733676397924423F4528482B4D6251655468576D5A7134743777217A25432A46294A404E635266556A586E3272357538782F413F4428472B4B";
 
     private Key getSigningKey() {
